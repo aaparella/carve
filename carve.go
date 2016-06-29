@@ -1,3 +1,4 @@
+// carve implements the seam carving algorithm for dyanmic image resizing.
 package carve
 
 import (
@@ -32,7 +33,7 @@ func GenerateSeam(im image.Image) Seam {
 	return FindLowestCostSeam(mat)
 }
 
-// RemoveSeam creates a copy of the provided image, with the pixels at 
+// RemoveSeam creates a copy of the provided image, with the pixels at
 // the points in the provided seam removed.
 func RemoveSeam(im image.Image, seam Seam) image.Image {
 	b := im.Bounds()
@@ -58,16 +59,18 @@ func RemoveSeam(im image.Image, seam Seam) image.Image {
 	return out
 }
 
+// Seam defines a sequence of pixels through an image to be removed.
 type Seam []Point
 
+// Point defines an X Y point in an image.
 type Point struct {
 	X, Y int
 }
 
-// GenerateCostMatrix creates a matrix indicating the cumulative energy of the 
+// GenerateCostMatrix creates a matrix indicating the cumulative energy of the
 // lowest cost seam from the left of the image to each pixel.
 //
-// mat[x][y] is the cumulative energy of the seam that runs from the left of 
+// mat[x][y] is the cumulative energy of the seam that runs from the left of
 // the image to the pixel at column x, row y.
 func GenerateCostMatrix(im image.Image) [][]float64 {
 	min, max := im.Bounds().Min, im.Bounds().Max
