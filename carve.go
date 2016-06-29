@@ -1,4 +1,4 @@
-// carve implements the seam carving algorithm for dyanmic image resizing.
+// Package carve implements the seam carving algorithm for dyanmic image resizing.
 package carve
 
 import (
