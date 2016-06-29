@@ -141,7 +141,6 @@ func FindLowestCostSeam(mat [][]float64) Seam {
 			y = y - 1
 		} else if left < up && left < down {
 			seam[x] = Point{X: x, Y: y}
-			y = y
 		} else {
 			seam[x] = Point{X: x, Y: y + 1}
 			y = y + 1
