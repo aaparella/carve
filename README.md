@@ -3,7 +3,10 @@ Go implementation of Seam Carving algorithm. Seam carving allows for an image to
 
 # Usage
 
-    resized := carve.ReduceHeight(img, 50)
+    resized, err := carve.ReduceHeight(img, 50)
+    if err != nil {
+        log.Fatal(err)
+    }
 
 # Todo
 
