@@ -2,6 +2,8 @@
 package carve
 
 import (
+	"errors"
+	"fmt"
 	"image"
 	"math"
 
@@ -9,13 +11,19 @@ import (
 )
 
 // ReduceHeight uses seam carving to reduce height of given image by n pixels.
-func ReduceHeight(im image.Image, n int) image.Image {
+func ReduceHeight(im image.Image, n int) (image.Image, error) {
+	height := im.Bounds().Max.Y - im.Bounds().Min.Y
+	if height < n {
+		return im, errors.New(
+			fmt.Sprintf("Cannot resize image of height %d by %d pixels", height, n))
+	}
+
 	for x := 0; x < n; x++ {
 		energy := GenerateEnergyMap(im)
 		seam := GenerateSeam(energy)
 		im = RemoveSeam(im, seam)
 	}
-	return im
+	return im, nil
 }
 
 // GenerateEnergyMap applies grayscale and sobel filters to the
