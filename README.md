@@ -10,5 +10,6 @@ Go implementation of Seam Carving algorithm. Seam carving allows for an image to
 
 # Todo
 
-* Implement vertical seam carving
-* Improve performance by caching?
+* Improve performance
+    - Reduce heap allocations
+    - Caching?

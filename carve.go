@@ -8,6 +8,7 @@ import (
 	"math"
 
 	"github.com/disintegration/gift"
+	"github.com/disintegration/imaging"
 )
 
 // ReduceHeight uses seam carving to reduce height of given image by n pixels.
@@ -24,6 +25,19 @@ func ReduceHeight(im image.Image, n int) (image.Image, error) {
 		im = RemoveSeam(im, seam)
 	}
 	return im, nil
+}
+
+// ReduceHeight uses seam carving to reduce height of given image by n pixels.
+func ReduceWidth(im image.Image, n int) (image.Image, error) {
+	width := im.Bounds().Max.Y - im.Bounds().Min.Y
+	if width < n {
+		return im, errors.New(
+			fmt.Sprintf("Cannot resize image of width %d by %d pixels", width, n))
+	}
+
+	i := imaging.Rotate90(im)
+	out, err := ReduceHeight(i, n)
+	return imaging.Rotate270(out), err
 }
 
 // GenerateEnergyMap applies grayscale and sobel filters to the
