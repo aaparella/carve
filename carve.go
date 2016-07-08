@@ -2,7 +2,6 @@
 package carve
 
 import (
-	"errors"
 	"fmt"
 	"image"
 	"math"
