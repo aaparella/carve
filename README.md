@@ -10,10 +10,10 @@ $ go get https://github.com/aaparella/carve
 # Usage
 
 ```go
-    resized, err := carve.ReduceHeight(img, 50)
-    if err != nil {
-        log.Fatal(err)
-    }
+resized, err := carve.ReduceHeight(img, 50)
+if err != nil {
+    log.Fatal(err)
+}
 ```
 
 # Todo
