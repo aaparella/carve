@@ -116,7 +116,7 @@ func GenerateCostMatrix(im image.Image) [][]float64 {
 		if y < max.Y-1 {
 			down = mat[x-1][y+1]
 		}
-		val := math.Min(float64(left), math.Min(float64(up), float64(down)))
+		val := math.Min(left, math.Min(up, down))
 		mat[x][y] = val + (float64(e) / float64(a))
 	}
 
